@@ -102,9 +102,6 @@ jobs:
         run: |
           . ./hack/ci/setup-env.sh
       - run: make build-test-image-${{ matrix.TEST }}
-      - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      - run: make push-test-image-${{ matrix.TEST }}
 
   build-infra:
     name: Build ${{ matrix.INFRA }}
