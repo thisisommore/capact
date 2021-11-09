@@ -194,6 +194,9 @@ jobs:
           make release-latest-binaries
 
   integration-tests:
+    strategy:
+      matrix:
+        type: [k3d,kind]
     name: Integration tests
     runs-on: ubuntu-latest
     needs: [ entry-tests, build-app, build-tests ]
@@ -224,6 +227,8 @@ jobs:
           CAPACT_BINARY: "./capact"
         run: |
           make test-integration
+        with:
+          CLUSTER : ${{ matrix.cluster }}
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         if: ${{ always() }}
