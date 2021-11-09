@@ -124,10 +124,8 @@ test-lint: ## Run linters on the codebase
 	./hack/lint.sh
 .PHONY: test-lint
 
-#TODO Move kind up
 test-integration:
-	./hack/test-integration-k3d.sh
-	./hack/test-integration-kind.sh
+	./hack/test-integration.sh
 .PHONY: test-integration
 
 test-k8s-controller:
