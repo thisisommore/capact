@@ -128,6 +128,16 @@ test-integration:
 	./hack/test-integration.sh
 .PHONY: test-integration
 
+test-integration-k3d: CLUSTER_TYPE = k3d
+test-integration-kind: CLUSTER_TYPE = kind
+test-integration-k3d:
+	./hack/test-integration.sh $(CLUSTER_TYPE)
+.PHONY: test-integration-k3d
+
+test-integration-kind:
+	./hack/test-integration.sh $(CLUSTER_TYPE)
+.PHONY: test-integration-kind
+
 test-k8s-controller:
 	./hack/test-k8s-controller.sh
 .PHONY: test-controller
