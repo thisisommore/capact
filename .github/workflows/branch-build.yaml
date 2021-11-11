@@ -84,9 +84,10 @@ jobs:
         run: |
           . ./hack/ci/setup-env.sh
       - run: make build-app-image-${{ matrix.APP }}
-      - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      - run: make push-app-image-${{ matrix.APP }}
+      # TODO: Remove commented code
+      # - name: Log into registry
+      #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      # - run: make push-app-image-${{ matrix.APP }}
 
   build-tests:
     name: Build ${{ matrix.TEST }}
@@ -104,9 +105,10 @@ jobs:
         run: |
           . ./hack/ci/setup-env.sh
       - run: make build-test-image-${{ matrix.TEST }}
-      - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      - run: make push-test-image-${{ matrix.TEST }}
+      # TODO: Remove commented code
+      # - name: Log into registry
+      #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      # - run: make push-test-image-${{ matrix.TEST }}
 
   build-infra:
     name: Build ${{ matrix.INFRA }}
@@ -125,9 +127,10 @@ jobs:
         run: |
           . ./hack/ci/setup-env.sh
       - run: make build-infra-image-${{ matrix.INFRA }}
-      - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      - run: make push-infra-image-${{ matrix.INFRA }}
+      # TODO: Remove commented code
+      # - name: Log into registry
+      #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      # - run: make push-infra-image-${{ matrix.INFRA }}
 
   release-helm-chart:
     name: Release Helm Charts
@@ -196,7 +199,7 @@ jobs:
   integration-tests:
     name: Integration tests
     runs-on: ubuntu-latest
-    needs: [ entry-tests, build-app, build-tests ]
+    needs: [ build-app, build-tests ]
     permissions:
       contents: read
     strategy:
