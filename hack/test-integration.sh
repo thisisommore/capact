@@ -71,6 +71,7 @@ main() {
         export CLUSTER_NAME=${CLUSTER_NAME:-${KIND_CI_CLUSTER_NAME}}
     else
         export CLUSTER_NAME=${CLUSTER_NAME:-${K3D_CI_CLUSTER_NAME}}
+    fi
 
     export HELM_VERSION=${STABLE_HELM_VERSION}
     capact::create_cluster
