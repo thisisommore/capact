@@ -228,9 +228,8 @@ jobs:
           ARTIFACTS: "output/"
           DISABLE_MONITORING_INSTALLATION: "true"
           CAPACT_BINARY: "./capact"
-          CLUSTER : ${{ matrix.cluster }}
         run: |
-          make test-integration
+          make test-integration ${{ matrix.cluster }}
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         if: ${{ always() }}
