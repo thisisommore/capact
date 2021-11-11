@@ -230,7 +230,7 @@ jobs:
           CAPACT_BINARY: "./capact"
           CLUSTER_TYPE: ${{ matrix.cluster }}
         run: |
-          make test-integration 
+          make DISABLE_MONITORING_INSTALLATION=true K3D_IMAGES_ARCHIVE=archive.tar test-integration 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         if: ${{ always() }}
