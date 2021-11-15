@@ -199,7 +199,7 @@ jobs:
   integration-tests:
     name: Integration tests
     runs-on: ubuntu-latest
-    needs: [ build-app, build-tests ]
+    # needs: [ build-app, build-tests ] don't need to wait for it, as we build images here.
     permissions:
       contents: read
     strategy:
@@ -224,13 +224,13 @@ jobs:
           chmod +x ./capact
       - name: Run cross-functional integration tests
         env:
-          BUILD_IMAGES: "false"
+          BUILD_IMAGES: "true" # TODO: change to false once the pushed images are used
           ARTIFACTS: "output/"
           DISABLE_MONITORING_INSTALLATION: "true"
           CAPACT_BINARY: "./capact"
           CLUSTER_TYPE: ${{ matrix.cluster }}
         run: |
-          make DISABLE_MONITORING_INSTALLATION=true K3D_IMAGES_ARCHIVE=archive.tar test-integration 
+          make test-integration
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         if: ${{ always() }}

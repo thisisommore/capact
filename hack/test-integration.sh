@@ -96,3 +96,5 @@ main() {
     DUMP_CLUSTER_INFO=false
     shout "Integration test completed successfully."
 }
+
+main
