@@ -29,9 +29,6 @@ func NewDefaultFilesystemValidator(fs http.FileSystem, ocfSchemaRootPath string,
 			types.TypeManifestKind: {
 				NewTypeValidator(),
 			},
-			types.InterfaceManifestKind: {
-				NewInterfaceValidator(),
-			},
 		},
 	}
 

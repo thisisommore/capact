@@ -151,8 +151,7 @@ export const schema = makeAugmentedSchema({
             }
           );
         } catch (e) {
-          const err = e as Error;
-          throw new Error(`failed to create the TypeInstances: ${err.message}`);
+          throw new Error(`failed to create the TypeInstances: ${e.message}`);
         } finally {
           await neo4jSession.close();
         }
@@ -166,7 +165,7 @@ export const schema = makeAugmentedSchema({
         try {
           return await neo4jgraphql(obj, args, context, resolveInfo);
         } catch (e) {
-          let err = e as Error;
+          let err = e;
           const customErr = tryToExtractCustomError(err);
           if (customErr) {
             switch (customErr.code) {
@@ -252,7 +251,7 @@ export const schema = makeAugmentedSchema({
             }
           );
         } catch (e) {
-          let err = e as Error;
+          let err = e;
           const customErr = tryToExtractCustomError(err);
           if (customErr) {
             switch (customErr.code) {
@@ -297,8 +296,7 @@ export const schema = makeAugmentedSchema({
             }
           );
         } catch (e) {
-          const err = e as Error;
-          throw new Error(`failed to lock TypeInstances: ${err.message}`);
+          throw new Error(`failed to lock TypeInstances: ${e.message}`);
         } finally {
           neo4jSession.close();
         }
@@ -325,8 +323,7 @@ export const schema = makeAugmentedSchema({
             }
           );
         } catch (e) {
-          const err = e as Error;
-          throw new Error(`failed to unlock TypeInstances: ${err.message}`);
+          throw new Error(`failed to unlock TypeInstances: ${e.message}`);
         } finally {
           neo4jSession.close();
         }

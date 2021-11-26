@@ -21,28 +21,6 @@ spec:
         typeRef:
           path: cap.type.productivity.mattermost.install-input
           revision: 0.1.0
-      additional-parameters:
-        jsonSchema:
-          #
-          # Invalid type of config property
-          #
-          value: |-
-            {
-              "$schema": "http://json-schema.org/draft-07/schema",
-              "type": "object",
-              "title": "The schema for Kubernetes Kubeconfig",
-              "required": [
-                  "config"
-              ],
-              "properties": {
-                "config": {
-                  "$id": "#/properties/config",
-                  "type": "object",
-                  "title": "Contains Kubernetes kubeconfig"
-                }
-              },
-              "additionalProperties": false
-            }
 
   output:
     typeInstances:
