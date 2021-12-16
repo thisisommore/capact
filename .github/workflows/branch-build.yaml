@@ -56,6 +56,8 @@ jobs:
       - name: upx version
         run: upx -V
       - name: Install upx
+        run: sudo apt-get update -y
+      - name: Install upx
         run: sudo apt install upx -y
       - name: upx version
         run: upx -V
