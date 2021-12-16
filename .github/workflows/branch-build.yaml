@@ -53,6 +53,12 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
+      - name: upx version
+        run: upx -V
+      - name: Install upx
+        run: sudo apt install upx -y
+      - name: upx version
+        run: upx -V
       - name: Set up GoReleaser
         run: go install github.com/goreleaser/goreleaser@v1.1.0
       - name: Release latest CLI
