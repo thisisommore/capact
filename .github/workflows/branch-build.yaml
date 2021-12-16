@@ -54,7 +54,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
       - name: Set up GoReleaser
-        run: go install github.com/goreleaser/goreleaser@v0.173.2
+        run: go install github.com/goreleaser/goreleaser@v1.1.0
       - name: Release latest CLI
         run: |
           make release-latest-binaries
