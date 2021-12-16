@@ -28,13 +28,6 @@ archives:
   - format: binary
     name_template: '{{ .Binary }}{{ if .Arm }}v{{ .Arm }}{{ end }}{{ if .Mips }}_{{ .Mips }}{{ end }}'
 
-dockers:
-  - dockerfile: Dockerfile.cli
-    ids:
-      - capact
-    image_templates:
-      - "ghcr.io/capactio/tools/capact-cli:latest"
-
 checksum:
   name_template: 'checksums.txt'
 
