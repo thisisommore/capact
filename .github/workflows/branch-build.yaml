@@ -58,17 +58,25 @@ jobs:
       - name: Install upx
         run: sudo apt-get update -y
       - name: Install upx
-        run: sudo apt install upx -y
+        run: |
+          # Install UPX
+          wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz
+          tar -xf upx-3.96-amd64_linux.tar.xz
+
+          # Compress files
+          ./upx-3.96-amd64_linux/upx -V
+          mv ./upx-3.96-amd64_linux/upx /usr/local/bin/upx
+          upx -V
       - name: upx version
         run: upx -V
-      - name: Set up GoReleaser
-        run: go install github.com/goreleaser/goreleaser@v1.1.0
-      - name: Release latest CLI
-        run: |
-          make release-latest-binaries
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ matrix.APP }}-${{github.sha}}
-          path: ./bin
-          retention-days: 1
+#      - name: Set up GoReleaser
+#        run: go install github.com/goreleaser/goreleaser@v1.1.0
+#      - name: Release latest CLI
+#        run: |
+#          make release-latest-binaries
+#      - name: Upload artifact
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: ${{ matrix.APP }}-${{github.sha}}
+#          path: ./bin
+#          retention-days: 1
