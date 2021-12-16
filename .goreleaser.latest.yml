@@ -17,9 +17,9 @@ builds:
     binary: 'capact-{{ .Os }}-{{ .Arch }}'
     ldflags:
       - -s -w -X  capact.io/capact/cmd/cli/cmd.Version={{.Version}} -X  capact.io/capact/cmd/cli/cmd.Revision={{.ShortCommit}} -X capact.io/capact/cmd/cli/cmd.BuildDate={{.Date}} -X capact.io/capact/cmd/cli/cmd.Branch={{.Branch}}
-    hooks:
-      # Install upx first, https://github.com/upx/upx/releases
-      post: upx -1 "{{ .Path }}"
+#    hooks:
+#      # Install upx first, https://github.com/upx/upx/releases
+#      post: upx -1 "{{ .Path }}"
     # GoReleaser creates binaries inside `bin/${BuildID}_${BuildTarget}`, which is an unique directory per build target in the matrix.
     # Currently, we use the `gsutil -m rsync ./bin/ gs://capactio-binaries/latest/` command, which is easier when binaries are not nested in nested directories.
     no_unique_dist_dir: true
