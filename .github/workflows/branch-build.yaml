@@ -69,14 +69,14 @@ jobs:
           upx -V
       - name: upx version
         run: upx -V
-#      - name: Set up GoReleaser
-#        run: go install github.com/goreleaser/goreleaser@v1.1.0
-#      - name: Release latest CLI
-#        run: |
-#          make release-latest-binaries
-#      - name: Upload artifact
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: ${{ matrix.APP }}-${{github.sha}}
-#          path: ./bin
-#          retention-days: 1
+      - name: Set up GoReleaser
+        run: go install github.com/goreleaser/goreleaser@v1.1.0
+      - name: Release latest CLI
+        run: |
+          make release-latest-binaries
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.APP }}-${{github.sha}}
+          path: ./bin
+          retention-days: 1
