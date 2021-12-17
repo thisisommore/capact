@@ -22,7 +22,6 @@ on:
 
 jobs:
 
-
   release-cli:
     name: Release the latest Capact CLIs
     runs-on: ubuntu-latest
@@ -53,11 +52,9 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - name: upx version
-        run: upx -V
-      - name: Install upx
-        run: sudo apt-get update -y
-      - name: Install upx
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Install upx 3.96
         run: |
           # Install UPX
           wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz
@@ -67,10 +64,13 @@ jobs:
           ./upx-3.96-amd64_linux/upx -V
           mv ./upx-3.96-amd64_linux/upx /usr/local/bin/upx
           upx -V
-      - name: upx version
-        run: upx -V
       - name: Set up GoReleaser
         run: go install github.com/goreleaser/goreleaser@v1.1.0
+      - name: Set up GCS
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.CAPACT_GCS_CREDS }}
+          export_default_credentials: true
       - name: Release latest CLI
         run: |
           make release-latest-binaries
